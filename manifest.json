@@ -1,0 +1,14 @@
+{
+  "name": "Disney World AI Agent",
+  "short_name": "Disney Agent",
+  "description": "Live ride wait times, AI planning, and day recap for Disney World",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a1a",
+  "theme_color": "#FFD700",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
