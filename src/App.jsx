@@ -208,7 +208,7 @@ Return ONLY valid JSON (no markdown):
       <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10}}>
         <span style={{fontSize:20}}>{PARK_EMOJI[pkData.park]||"🏰"}</span>
         <select value={pkData.park} onChange={e=>updatePark(dayIdx,parkIdx,"park",e.target.value)}
-          style={{flex:1,background:"#11112b",border:`1px solid ${T.border}`,borderRadius:7,color:T.gold,fontSize:12,padding:"6px 9px",fontFamily:"'Lato',sans-serif",cursor:"pointer",fontWeight:700}}>
+          style={{flex:1,background:"#11112b",border:`1px solid ${T.border}`,borderRadius:7,color:T.gold,fontSize:15,padding:"10px 14px",fontFamily:"'Lato',sans-serif",cursor:"pointer",fontWeight:700}}>
           {PARKS.map(p=><option key={p} value={p}>{p}</option>)}
         </select>
         {parkIdx===0 && (
@@ -225,9 +225,9 @@ Return ONLY valid JSON (no markdown):
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
         {[["arrive","Arrive"],["leave","Leave"]].map(([field,label])=>(
           <div key={field}>
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>{label}</div>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>{label}</div>
             <select value={pkData[field]} onChange={e=>updatePark(dayIdx,parkIdx,field,e.target.value)}
-              style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:11,padding:"6px 8px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
+              style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:14,padding:"6px 8px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
               {["7:00 AM","7:30 AM","8:00 AM","8:30 AM","9:00 AM","9:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM","12:00 PM","12:30 PM","1:00 PM","1:30 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM","6:00 PM","7:00 PM","8:00 PM","9:00 PM","10:00 PM","11:00 PM","12:00 AM"].map(t=><option key={t} value={t}>{t}</option>)}
             </select>
           </div>
@@ -248,14 +248,14 @@ Return ONLY valid JSON (no markdown):
       <div style={{display:"flex",gap:6,flexWrap:"wrap",alignItems:"center"}}>
         {tripDays.map((d,i)=>(
           <button key={d.id} onClick={()=>{setSelectedDayIdx(i);setStep("setup");}} style={{
-            padding:"6px 14px",borderRadius:20,cursor:"pointer",fontFamily:"'Lato',sans-serif",fontSize:11,fontWeight:700,
+            padding:"6px 14px",borderRadius:20,cursor:"pointer",fontFamily:"'Lato',sans-serif",fontSize:14,fontWeight:700,
             border:`1px solid ${selectedDayIdx===i?T.gold:T.border}`,
             background:selectedDayIdx===i?"rgba(255,215,0,.12)":"transparent",
             color:selectedDayIdx===i?T.gold:T.dim,
             position:"relative",
           }}>
             Day {i+1}
-            {d.date && <span style={{display:"block",fontSize:9,color:T.dim,fontWeight:400}}>
+            {d.date && <span style={{display:"block",fontSize:15,color:T.dim,fontWeight:400}}>
               {new Date(d.date+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"})}
             </span>}
             {plans[i] && !plans[i].error && <span style={{position:"absolute",top:2,right:4,fontSize:8,color:T.green}}>✓</span>}
@@ -277,25 +277,25 @@ Return ONLY valid JSON (no markdown):
 
           {/* Date + Park(s) */}
           <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:16}}>
-            <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.gold,letterSpacing:1,marginBottom:12}}>
+            <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.gold,letterSpacing:1,marginBottom:12}}>
               📅 DAY {selectedDayIdx+1} — PARK SETUP
             </div>
 
             {/* Date picker */}
             <div style={{marginBottom:12}}>
-              <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Visit Date</div>
+              <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Visit Date</div>
               <input type="date" value={selectedDay.date}
                 onChange={e=>updateDay(selectedDayIdx,"date",e.target.value)}
-                style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:13,padding:"8px 10px",fontFamily:"'Lato',sans-serif",colorScheme:"dark"}}/>
+                style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:16,padding:"12px 14px",fontFamily:"'Lato',sans-serif",colorScheme:"dark"}}/>
               {selectedDay.date && (
-                <div style={{marginTop:5,fontSize:11,color:T.purple,fontFamily:"'Lato',sans-serif"}}>
+                <div style={{marginTop:5,fontSize:14,color:T.purple,fontFamily:"'Lato',sans-serif"}}>
                   {new Date(selectedDay.date+"T12:00:00").toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"})}
                 </div>
               )}
             </div>
 
             {/* Park(s) */}
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:8,fontFamily:"'Lato',sans-serif"}}>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:8,fontFamily:"'Lato',sans-serif"}}>
               Park{selectedDay.parks.length>1?"s":""} & Hours
             </div>
             {selectedDay.parks.map((pk,pkIdx)=>(
@@ -304,8 +304,8 @@ Return ONLY valid JSON (no markdown):
 
             {/* Park hopper summary */}
             {selectedDay.twoPark && (
-              <div style={{background:"rgba(179,136,255,.06)",border:`1px solid rgba(179,136,255,.2)`,borderRadius:9,padding:"9px 12px",marginTop:4}}>
-                <div style={{fontSize:11,color:T.purple,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>
+              <div style={{background:"rgba(179,136,255,.06)",border:`1px solid rgba(179,136,255,.2)`,borderRadius:9,padding:"13px 16px",marginTop:4}}>
+                <div style={{fontSize:14,color:T.purple,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>
                   🎟️ <strong>Park Hopper</strong> — Your plan will be split between {selectedDay.parks.map(p=>p.park).join(" and ")}. Claude will include a travel transition and optimize each park block.
                 </div>
               </div>
@@ -314,19 +314,19 @@ Return ONLY valid JSON (no markdown):
 
           {/* Preferences */}
           <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:16}}>
-            <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.purple,letterSpacing:1,marginBottom:12}}>⚙️ PREFERENCES (applies to all days)</div>
+            <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.purple,letterSpacing:1,marginBottom:12}}>⚙️ PREFERENCES (applies to all days)</div>
             <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:10}}>
               {[["groupSize","Group Size"],["lunchTime","Lunch Around"],["dinnerTime","Dinner Around"],["breakTime","Rest Break"]].map(([k,l])=>(
                 <div key={k}>
-                  <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>{l}</div>
+                  <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>{l}</div>
                   <input value={prefs[k]} onChange={e=>setPrefs(p=>({...p,[k]:e.target.value}))}
-                    style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:12,padding:"6px 9px",fontFamily:"'Lato',sans-serif"}}/>
+                    style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:15,padding:"10px 14px",fontFamily:"'Lato',sans-serif"}}/>
                 </div>
               ))}
               <div>
-                <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Thrill Level</div>
+                <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Thrill Level</div>
                 <select value={prefs.thrillLevel} onChange={e=>setPrefs(p=>({...p,thrillLevel:e.target.value}))}
-                  style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:7,color:T.gold,fontSize:12,padding:"6px 9px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
+                  style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:7,color:T.gold,fontSize:15,padding:"10px 14px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
                   <option value="all">Mix of everything</option>
                   <option value="high">Thrill rides focus</option>
                   <option value="low">Family-friendly only</option>
@@ -334,26 +334,26 @@ Return ONLY valid JSON (no markdown):
               </div>
               {[["hasKids","👧 Young Kids (under 8)"],["hasLightningLane","⚡ Lightning Lane"]].map(([k,l])=>(
                 <div key={k}>
-                  <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>{l}</div>
-                  <button onClick={()=>setPrefs(p=>({...p,[k]:!p[k]}))} style={{width:"100%",padding:"6px 9px",borderRadius:7,border:`1px solid ${prefs[k]?T.green:T.border}`,background:prefs[k]?"rgba(105,240,174,.1)":"transparent",color:prefs[k]?T.green:T.dim,fontSize:12,fontFamily:"'Lato',sans-serif",cursor:"pointer",fontWeight:700,textAlign:"left"}}>
+                  <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>{l}</div>
+                  <button onClick={()=>setPrefs(p=>({...p,[k]:!p[k]}))} style={{width:"100%",padding:"10px 14px",borderRadius:7,border:`1px solid ${prefs[k]?T.green:T.border}`,background:prefs[k]?"rgba(105,240,174,.1)":"transparent",color:prefs[k]?T.green:T.dim,fontSize:15,fontFamily:"'Lato',sans-serif",cursor:"pointer",fontWeight:700,textAlign:"left"}}>
                     {prefs[k]?"✓ Yes":"✗ No"}
                   </button>
                 </div>
               ))}
               <div style={{gridColumn:"1/-1"}}>
-                <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Must-Do Rides</div>
+                <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Must-Do Rides</div>
                 <input value={prefs.mustDo} onChange={e=>setPrefs(p=>({...p,mustDo:e.target.value}))} placeholder="e.g. Seven Dwarfs, Rise of the Resistance"
-                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:12,padding:"6px 9px",fontFamily:"'Lato',sans-serif"}}/>
+                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:15,padding:"10px 14px",fontFamily:"'Lato',sans-serif"}}/>
               </div>
               <div style={{gridColumn:"1/-1"}}>
-                <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Skip These</div>
+                <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Skip These</div>
                 <input value={prefs.skipRides} onChange={e=>setPrefs(p=>({...p,skipRides:e.target.value}))} placeholder="e.g. water rides, roller coasters"
-                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:12,padding:"6px 9px",fontFamily:"'Lato',sans-serif"}}/>
+                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:7,color:T.text,fontSize:15,padding:"10px 14px",fontFamily:"'Lato',sans-serif"}}/>
               </div>
             </div>
           </div>
 
-          <button onClick={generatePlan} disabled={planLoading} style={{padding:"14px",background:planLoading?"rgba(179,136,255,.08)":`linear-gradient(135deg,rgba(179,136,255,.2),rgba(79,195,247,.2))`,border:`1px solid ${planLoading?T.dim:T.purple}`,borderRadius:10,color:planLoading?T.dim:T.purple,fontFamily:"'Cinzel',serif",fontSize:13,fontWeight:700,letterSpacing:1,cursor:planLoading?"not-allowed":"pointer"}}>
+          <button onClick={generatePlan} disabled={planLoading} style={{padding:"14px",background:planLoading?"rgba(179,136,255,.08)":`linear-gradient(135deg,rgba(179,136,255,.2),rgba(79,195,247,.2))`,border:`1px solid ${planLoading?T.dim:T.purple}`,borderRadius:10,color:planLoading?T.dim:T.purple,fontFamily:"'Cinzel',serif",fontSize:16,fontWeight:700,letterSpacing:1,cursor:planLoading?"not-allowed":"pointer"}}>
             {planLoading
               ? "✨ CRAFTING YOUR PERFECT DAY…"
               : `✨ PLAN DAY ${selectedDayIdx+1} — ${selectedDay.parks.map(p=>p.park).join(" + ")}`}
@@ -362,14 +362,14 @@ Return ONLY valid JSON (no markdown):
           {/* All days overview */}
           {tripDays.length > 1 && (
             <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:14}}>
-              <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.blue,letterSpacing:1,marginBottom:10}}>🗓️ TRIP OVERVIEW</div>
+              <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.blue,letterSpacing:1,marginBottom:10}}>🗓️ TRIP OVERVIEW</div>
               {tripDays.map((d,i)=>(
-                <div key={d.id} onClick={()=>{setSelectedDayIdx(i);setStep("setup");}} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:9,cursor:"pointer",marginBottom:5,background:i===selectedDayIdx?"rgba(255,215,0,.06)":"transparent",border:`1px solid ${i===selectedDayIdx?T.gold:T.border}`}}>
-                  <div style={{width:28,height:28,borderRadius:"50%",background:plans[i]&&!plans[i].error?"rgba(105,240,174,.15)":"rgba(255,215,0,.1)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Cinzel',serif",fontSize:11,color:plans[i]&&!plans[i].error?T.green:T.gold,fontWeight:700,flexShrink:0}}>
+                <div key={d.id} onClick={()=>{setSelectedDayIdx(i);setStep("setup");}} style={{display:"flex",alignItems:"center",gap:10,padding:"13px 16px",borderRadius:9,cursor:"pointer",marginBottom:5,background:i===selectedDayIdx?"rgba(255,215,0,.06)":"transparent",border:`1px solid ${i===selectedDayIdx?T.gold:T.border}`}}>
+                  <div style={{width:28,height:28,borderRadius:"50%",background:plans[i]&&!plans[i].error?"rgba(105,240,174,.15)":"rgba(255,215,0,.1)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Cinzel',serif",fontSize:14,color:plans[i]&&!plans[i].error?T.green:T.gold,fontWeight:700,flexShrink:0}}>
                     {plans[i]&&!plans[i].error?"✓":i+1}
                   </div>
                   <div style={{flex:1}}>
-                    <div style={{fontSize:12,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif"}}>
+                    <div style={{fontSize:15,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif"}}>
                       {d.date ? new Date(d.date+"T12:00:00").toLocaleDateString("en-US",{weekday:"long",month:"short",day:"numeric"}) : `Day ${i+1}`}
                     </div>
                     <div style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>
@@ -390,8 +390,8 @@ Return ONLY valid JSON (no markdown):
       {step === "plan" && (
         <div style={{display:"flex",flexDirection:"column",gap:12,animation:"slideIn .3s ease"}}>
           <div style={{display:"flex",gap:8,alignItems:"center"}}>
-            <button onClick={()=>setStep("setup")} style={{padding:"6px 12px",borderRadius:20,border:`1px solid ${T.border}`,background:"transparent",color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:11,cursor:"pointer"}}>← Back to Setup</button>
-            <div style={{fontFamily:"'Cinzel',serif",fontSize:12,color:T.gold,letterSpacing:1}}>
+            <button onClick={()=>setStep("setup")} style={{padding:"6px 12px",borderRadius:20,border:`1px solid ${T.border}`,background:"transparent",color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:14,cursor:"pointer"}}>← Back to Setup</button>
+            <div style={{fontFamily:"'Cinzel',serif",fontSize:15,color:T.gold,letterSpacing:1}}>
               DAY {selectedDayIdx+1} — {selectedDay.parks.map(p=>p.park).join(" + ").toUpperCase()}
               {selectedDay.date && ` · ${new Date(selectedDay.date+"T12:00:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}`}
             </div>
@@ -406,22 +406,22 @@ Return ONLY valid JSON (no markdown):
                   {selectedDay.parks.map(p=>`${PARK_EMOJI[p.park]} ${p.park} ${p.arrive}–${p.leave}`).join("  →  ")}
                 </div>
                 <div style={{fontFamily:"'Cinzel',serif",fontSize:15,color:T.gold,marginBottom:5}}>🏰 {currentPlan.headline}</div>
-                <div style={{fontSize:12,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6,marginBottom:selectedDay.twoPark?6:0}}>📊 {currentPlan.crowdForecast}</div>
-                {selectedDay.twoPark && <div style={{fontSize:11,color:T.purple,fontFamily:"'Lato',sans-serif",marginTop:4}}>🎟️ Park Hopper day — plan covers both parks</div>}
-                {currentPlan.eveningHighlight && <div style={{fontSize:12,color:T.purple,fontFamily:"'Lato',sans-serif",marginTop:6}}>🌙 {currentPlan.eveningHighlight}</div>}
+                <div style={{fontSize:15,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6,marginBottom:selectedDay.twoPark?6:0}}>📊 {currentPlan.crowdForecast}</div>
+                {selectedDay.twoPark && <div style={{fontSize:14,color:T.purple,fontFamily:"'Lato',sans-serif",marginTop:4}}>🎟️ Park Hopper day — plan covers both parks</div>}
+                {currentPlan.eveningHighlight && <div style={{fontSize:15,color:T.purple,fontFamily:"'Lato',sans-serif",marginTop:6}}>🌙 {currentPlan.eveningHighlight}</div>}
               </div>
 
               {currentPlan.lightningLaneOrder?.length>0 && (
                 <div style={{background:T.card,border:`1px solid ${T.gold}`,borderRadius:12,padding:14}}>
                   <div style={{fontFamily:"'Cinzel',serif",fontSize:10,color:T.gold,letterSpacing:1,marginBottom:8}}>⚡ LIGHTNING LANE ORDER</div>
                   <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
-                    {currentPlan.lightningLaneOrder.map((r,i)=><span key={i} style={{fontSize:11,padding:"3px 10px",borderRadius:20,background:"rgba(255,215,0,.1)",color:T.gold,fontFamily:"'Lato',sans-serif",border:"1px solid rgba(255,215,0,.25)"}}>{i+1}. {r}</span>)}
+                    {currentPlan.lightningLaneOrder.map((r,i)=><span key={i} style={{fontSize:14,padding:"3px 10px",borderRadius:20,background:"rgba(255,215,0,.1)",color:T.gold,fontFamily:"'Lato',sans-serif",border:"1px solid rgba(255,215,0,.25)"}}>{i+1}. {r}</span>)}
                   </div>
                 </div>
               )}
 
               <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden"}}>
-                <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:11,color:T.blue,letterSpacing:1}}>📅 HOUR-BY-HOUR ITINERARY</div>
+                <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:14,color:T.blue,letterSpacing:1}}>📅 HOUR-BY-HOUR ITINERARY</div>
                 <div style={{maxHeight:520,overflowY:"auto"}}>
                   {(currentPlan.slots||[]).map((s,i)=>{
                     const isParkSwitch = s.type==="travel";
@@ -434,13 +434,13 @@ Return ONLY valid JSON (no markdown):
                         <div style={{fontSize:16,flexShrink:0}}>{typeIcon[s.type]||"📍"}</div>
                         <div style={{flex:1,minWidth:0}}>
                           <div style={{display:"flex",alignItems:"center",gap:5,flexWrap:"wrap"}}>
-                            <span style={{fontSize:12,fontWeight:700,color:typeColor[s.type]||T.text,fontFamily:"'Lato',sans-serif"}}>{s.title}</span>
+                            <span style={{fontSize:15,fontWeight:700,color:typeColor[s.type]||T.text,fontFamily:"'Lato',sans-serif"}}>{s.title}</span>
                             {s.park && selectedDay.twoPark && <span style={{fontSize:8,padding:"1px 5px",borderRadius:6,background:"rgba(179,136,255,.15)",color:T.purple,fontFamily:"'Lato',sans-serif"}}>{PARK_EMOJI[s.park]||""} {s.park}</span>}
                             {s.lightningLane && <span style={{fontSize:8,padding:"1px 5px",borderRadius:6,background:"rgba(255,215,0,.15)",color:T.gold,fontFamily:"'Lato',sans-serif"}}>⚡LL</span>}
                             {s.priority==="must" && <span style={{fontSize:8,padding:"1px 5px",borderRadius:6,background:"rgba(255,107,157,.15)",color:T.pink,fontFamily:"'Lato',sans-serif"}}>MUST</span>}
                           </div>
-                          <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1}}>{s.location}{s.waitEstimate&&s.type==="ride"?` · Est. ${s.waitEstimate}`:""}</div>
-                          {s.note && <div style={{fontSize:11,color:T.text,fontFamily:"'Lato',sans-serif",marginTop:3,lineHeight:1.5,opacity:.8}}>{s.note}</div>}
+                          <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1}}>{s.location}{s.waitEstimate&&s.type==="ride"?` · Est. ${s.waitEstimate}`:""}</div>
+                          {s.note && <div style={{fontSize:14,color:T.text,fontFamily:"'Lato',sans-serif",marginTop:3,lineHeight:1.5,opacity:.8}}>{s.note}</div>}
                         </div>
                       </div>
                     );
@@ -454,13 +454,13 @@ Return ONLY valid JSON (no markdown):
                   {currentPlan.proTips.map((tip,i)=>(
                     <div key={i} style={{display:"flex",gap:7,alignItems:"flex-start",marginBottom:6}}>
                       <span style={{color:T.gold,flexShrink:0}}>→</span>
-                      <span style={{fontSize:12,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.55}}>{tip}</span>
+                      <span style={{fontSize:15,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.55}}>{tip}</span>
                     </div>
                   ))}
                 </div>
               )}
 
-              <button onClick={()=>setStep("setup")} style={{padding:"10px",background:"transparent",border:`1px solid ${T.border}`,borderRadius:9,color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:12,cursor:"pointer"}}>
+              <button onClick={()=>setStep("setup")} style={{padding:"10px",background:"transparent",border:`1px solid ${T.border}`,borderRadius:9,color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:15,cursor:"pointer"}}>
                 ✏️ Edit Day Setup
               </button>
             </>
@@ -583,7 +583,7 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
           <div key={s.label} style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:12,padding:"12px 14px",textAlign:"center"}}>
             <div style={{fontSize:20,marginBottom:3}}>{s.icon}</div>
             <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:s.color,fontWeight:700}}>{s.value}</div>
-            <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:2,textTransform:"uppercase",letterSpacing:1}}>{s.label}</div>
+            <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:2,textTransform:"uppercase",letterSpacing:1}}>{s.label}</div>
           </div>
         ))}
       </div>
@@ -591,7 +591,7 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
       {/* Sub-nav */}
       <div style={{display:"flex",gap:8}}>
         {[["log","📋 Log Your Day"],["preview","✉️ Preview Recap"],["send","📤 Send to Family"]].map(([id,label])=>(
-          <button key={id} onClick={()=>setActiveSection(id)} style={{padding:"7px 14px",borderRadius:20,border:`1px solid ${activeSection===id?T.pink:T.border}`,background:activeSection===id?"rgba(255,107,157,.12)":"transparent",color:activeSection===id?T.pink:T.dim,fontFamily:"'Lato',sans-serif",fontSize:11,fontWeight:700,cursor:"pointer",whiteSpace:"nowrap"}}>
+          <button key={id} onClick={()=>setActiveSection(id)} style={{padding:"7px 14px",borderRadius:20,border:`1px solid ${activeSection===id?T.pink:T.border}`,background:activeSection===id?"rgba(255,107,157,.12)":"transparent",color:activeSection===id?T.pink:T.dim,fontFamily:"'Lato',sans-serif",fontSize:14,fontWeight:700,cursor:"pointer",whiteSpace:"nowrap"}}>
             {label}
           </button>
         ))}
@@ -603,23 +603,23 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
 
           {/* Add ride */}
           <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:16}}>
-            <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.blue,letterSpacing:1,marginBottom:12}}>🎢 LOG A RIDE</div>
+            <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.blue,letterSpacing:1,marginBottom:12}}>🎢 LOG A RIDE</div>
             <div style={{display:"grid",gridTemplateColumns:"1fr 80px",gap:8,marginBottom:8}}>
               <div>
-                <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Ride Name</div>
+                <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Ride Name</div>
                 <input value={rideInput.name} onChange={e=>setRideInput(p=>({...p,name:e.target.value}))}
                   onKeyDown={e=>{if(e.key==="Enter")addRide()}}
                   placeholder="e.g. Space Mountain"
-                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:12,padding:"8px 10px",fontFamily:"'Lato',sans-serif"}}/>
+                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:15,padding:"12px 14px",fontFamily:"'Lato',sans-serif"}}/>
               </div>
               <div>
-                <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Wait (min)</div>
+                <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Wait (min)</div>
                 <input value={rideInput.wait} onChange={e=>setRideInput(p=>({...p,wait:e.target.value}))} type="number" placeholder="25"
-                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:12,padding:"8px 10px",fontFamily:"'Lato',sans-serif"}}/>
+                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:15,padding:"12px 14px",fontFamily:"'Lato',sans-serif"}}/>
               </div>
             </div>
             <div style={{marginBottom:8}}>
-              <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Rating</div>
+              <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Rating</div>
               <div style={{display:"flex",gap:6}}>
                 {STARS.map(s=>(
                   <button key={s} onClick={()=>setRideInput(p=>({...p,rating:s}))} style={{padding:"4px 8px",borderRadius:8,border:`1px solid ${rideInput.rating===s?T.gold:T.border}`,background:rideInput.rating===s?"rgba(255,215,0,.15)":"transparent",cursor:"pointer",fontSize:12}}>
@@ -629,13 +629,13 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
               </div>
             </div>
             <div style={{marginBottom:10}}>
-              <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Highlight / Funny Moment (optional)</div>
+              <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Highlight / Funny Moment (optional)</div>
               <input value={rideInput.highlight} onChange={e=>setRideInput(p=>({...p,highlight:e.target.value}))}
                 onKeyDown={e=>{if(e.key==="Enter")addRide()}}
                 placeholder="e.g. Dad screamed the whole time!"
-                style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:12,padding:"8px 10px",fontFamily:"'Lato',sans-serif"}}/>
+                style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:15,padding:"12px 14px",fontFamily:"'Lato',sans-serif"}}/>
             </div>
-            <button onClick={addRide} style={{width:"100%",padding:"10px",background:"rgba(79,195,247,.1)",border:`1px solid ${T.blue}`,borderRadius:8,color:T.blue,fontFamily:"'Cinzel',serif",fontSize:11,fontWeight:700,cursor:"pointer",letterSpacing:1}}>
+            <button onClick={addRide} style={{width:"100%",padding:"10px",background:"rgba(79,195,247,.1)",border:`1px solid ${T.blue}`,borderRadius:8,color:T.blue,fontFamily:"'Cinzel',serif",fontSize:14,fontWeight:700,cursor:"pointer",letterSpacing:1}}>
               + ADD RIDE TO LOG
             </button>
           </div>
@@ -643,15 +643,15 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
           {/* Ride log */}
           {rides.length > 0 && (
             <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden"}}>
-              <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:11,color:T.green,letterSpacing:1}}>
+              <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:14,color:T.green,letterSpacing:1}}>
                 ✓ RIDES LOGGED TODAY ({rides.length})
               </div>
               <div style={{maxHeight:240,overflowY:"auto"}}>
                 {rides.map((r,i)=>(
-                  <div key={r.id} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 14px",borderBottom:`1px solid ${T.border}20`}}>
+                  <div key={r.id} style={{display:"flex",alignItems:"center",gap:10,padding:"13px 16px",borderBottom:`1px solid ${T.border}20`}}>
                     <div style={{width:22,height:22,borderRadius:"50%",background:T.green,color:"#000",fontSize:10,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontFamily:"'Lato',sans-serif"}}>{i+1}</div>
                     <div style={{flex:1,minWidth:0}}>
-                      <div style={{fontSize:12,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif"}}>{r.name}</div>
+                      <div style={{fontSize:15,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif"}}>{r.name}</div>
                       <div style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{r.time} · waited {r.wait||"?"}min · {r.rating}</div>
                       {r.highlight && <div style={{fontSize:10,color:T.orange,fontFamily:"'Lato',sans-serif",marginTop:1}}>💬 {r.highlight}</div>}
                     </div>
@@ -664,21 +664,21 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
 
           {/* Special moments */}
           <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:16}}>
-            <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.purple,letterSpacing:1,marginBottom:10}}>✨ LOG A SPECIAL MOMENT</div>
+            <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.purple,letterSpacing:1,marginBottom:10}}>✨ LOG A SPECIAL MOMENT</div>
             <div style={{display:"flex",gap:8}}>
               <input value={momentInput} onChange={e=>setMomentInput(e.target.value)}
                 onKeyDown={e=>{if(e.key==="Enter")addMoment()}}
                 placeholder="e.g. Met Mickey Mouse! Kids lost their minds 🎉"
-                style={{flex:1,background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:12,padding:"8px 10px",fontFamily:"'Lato',sans-serif"}}/>
-              <button onClick={addMoment} style={{padding:"8px 14px",background:"rgba(179,136,255,.1)",border:`1px solid ${T.purple}`,borderRadius:8,color:T.purple,fontFamily:"'Lato',sans-serif",fontSize:12,fontWeight:700,cursor:"pointer",whiteSpace:"nowrap"}}>+ Add</button>
+                style={{flex:1,background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:15,padding:"12px 14px",fontFamily:"'Lato',sans-serif"}}/>
+              <button onClick={addMoment} style={{padding:"8px 14px",background:"rgba(179,136,255,.1)",border:`1px solid ${T.purple}`,borderRadius:8,color:T.purple,fontFamily:"'Lato',sans-serif",fontSize:15,fontWeight:700,cursor:"pointer",whiteSpace:"nowrap"}}>+ Add</button>
             </div>
             {moments.length>0 && (
               <div style={{marginTop:10,display:"flex",flexDirection:"column",gap:6}}>
                 {moments.map(m=>(
                   <div key={m.id} style={{display:"flex",gap:8,alignItems:"center",padding:"6px 10px",borderRadius:8,background:"rgba(179,136,255,.06)",border:`1px solid rgba(179,136,255,.15)`}}>
-                    <span style={{fontSize:12,color:T.purple}}>✨</span>
-                    <span style={{flex:1,fontSize:11,color:T.text,fontFamily:"'Lato',sans-serif"}}>{m.text}</span>
-                    <span style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{m.time}</span>
+                    <span style={{fontSize:15,color:T.purple}}>✨</span>
+                    <span style={{flex:1,fontSize:14,color:T.text,fontFamily:"'Lato',sans-serif"}}>{m.text}</span>
+                    <span style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{m.time}</span>
                     <button onClick={()=>setMoments(p=>p.filter(x=>x.id!==m.id))} style={{background:"transparent",border:"none",color:T.dim,cursor:"pointer",fontSize:14}}>×</button>
                   </div>
                 ))}
@@ -686,7 +686,7 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
             )}
           </div>
 
-          <button onClick={generatePreview} style={{padding:"13px",background:`linear-gradient(135deg,rgba(255,107,157,.2),rgba(255,183,77,.2))`,border:`1px solid ${T.pink}`,borderRadius:10,color:T.pink,fontFamily:"'Cinzel',serif",fontSize:13,fontWeight:700,cursor:"pointer",letterSpacing:1}}>
+          <button onClick={generatePreview} style={{padding:"13px",background:`linear-gradient(135deg,rgba(255,107,157,.2),rgba(255,183,77,.2))`,border:`1px solid ${T.pink}`,borderRadius:10,color:T.pink,fontFamily:"'Cinzel',serif",fontSize:16,fontWeight:700,cursor:"pointer",letterSpacing:1}}>
             ✉️ GENERATE RECAP EMAIL PREVIEW →
           </button>
         </div>
@@ -702,8 +702,8 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
           )}
           {!previewLoading && !preview && (
             <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:30,textAlign:"center"}}>
-              <div style={{color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:13,marginBottom:16}}>Generate a preview to see your recap email.</div>
-              <button onClick={generatePreview} style={{padding:"11px 24px",background:"rgba(255,107,157,.12)",border:`1px solid ${T.pink}`,borderRadius:9,color:T.pink,fontFamily:"'Cinzel',serif",fontSize:12,fontWeight:700,cursor:"pointer"}}>
+              <div style={{color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:16,marginBottom:16}}>Generate a preview to see your recap email.</div>
+              <button onClick={generatePreview} style={{padding:"11px 24px",background:"rgba(255,107,157,.12)",border:`1px solid ${T.pink}`,borderRadius:9,color:T.pink,fontFamily:"'Cinzel',serif",fontSize:15,fontWeight:700,cursor:"pointer"}}>
                 ✉️ GENERATE PREVIEW
               </button>
             </div>
@@ -711,7 +711,7 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
           {preview && !previewLoading && (
             <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden"}}>
               <div style={{padding:"10px 16px",borderBottom:`1px solid ${T.border}`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <span style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.pink,letterSpacing:1}}>📧 RECAP PREVIEW</span>
+                <span style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.pink,letterSpacing:1}}>📧 RECAP PREVIEW</span>
                 <button onClick={generatePreview} style={{background:"transparent",border:`1px solid ${T.border}`,color:T.dim,borderRadius:7,padding:"3px 9px",fontSize:10,cursor:"pointer",fontFamily:"'Lato',sans-serif"}}>↺ Regenerate</button>
               </div>
               {/* Email preview card */}
@@ -719,24 +719,24 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
                 <div style={{background:"linear-gradient(135deg,#0d0d5e,#1e1e8e)",borderRadius:"12px 12px 0 0",padding:"20px 24px",textAlign:"center"}}>
                   <div style={{fontSize:28,marginBottom:4}}>✨🏰✨</div>
                   <div style={{color:T.gold,fontFamily:"'Cinzel',serif",fontSize:16,letterSpacing:1}}>{groupName}'s Disney Day Recap!</div>
-                  <div style={{color:"#9090e0",fontSize:11,marginTop:4,fontFamily:"'Lato',sans-serif"}}>{park} · {visitDay} · {new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})}</div>
+                  <div style={{color:"#9090e0",fontSize:14,marginTop:4,fontFamily:"'Lato',sans-serif"}}>{park} · {visitDay} · {new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})}</div>
                 </div>
                 <div style={{background:"rgba(255,255,255,.03)",border:`1px solid ${T.border}`,borderRadius:"0 0 12px 12px",padding:"20px 24px"}}>
                   {/* Stats pills */}
                   <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:16}}>
-                    <span style={{fontSize:11,padding:"3px 10px",borderRadius:20,background:"rgba(105,240,174,.1)",color:T.green,fontFamily:"'Lato',sans-serif",border:`1px solid rgba(105,240,174,.2)`}}>🎢 {rides.length} rides</span>
-                    <span style={{fontSize:11,padding:"3px 10px",borderRadius:20,background:"rgba(255,215,0,.1)",color:T.gold,fontFamily:"'Lato',sans-serif",border:`1px solid rgba(255,215,0,.2)`}}>⏱ {totalWaitMins}min waited</span>
-                    <span style={{fontSize:11,padding:"3px 10px",borderRadius:20,background:"rgba(179,136,255,.1)",color:T.purple,fontFamily:"'Lato',sans-serif",border:`1px solid rgba(179,136,255,.2)`}}>✨ {moments.length} moments</span>
+                    <span style={{fontSize:14,padding:"3px 10px",borderRadius:20,background:"rgba(105,240,174,.1)",color:T.green,fontFamily:"'Lato',sans-serif",border:`1px solid rgba(105,240,174,.2)`}}>🎢 {rides.length} rides</span>
+                    <span style={{fontSize:14,padding:"3px 10px",borderRadius:20,background:"rgba(255,215,0,.1)",color:T.gold,fontFamily:"'Lato',sans-serif",border:`1px solid rgba(255,215,0,.2)`}}>⏱ {totalWaitMins}min waited</span>
+                    <span style={{fontSize:14,padding:"3px 10px",borderRadius:20,background:"rgba(179,136,255,.1)",color:T.purple,fontFamily:"'Lato',sans-serif",border:`1px solid rgba(179,136,255,.2)`}}>✨ {moments.length} moments</span>
                   </div>
                   {/* Body text */}
-                  <div style={{fontSize:13,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.8,whiteSpace:"pre-wrap"}}>{preview}</div>
+                  <div style={{fontSize:16,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.8,whiteSpace:"pre-wrap"}}>{preview}</div>
                   {/* Ride list */}
                   {rides.length>0 && (
                     <div style={{marginTop:16,padding:12,background:"rgba(79,195,247,.06)",borderRadius:10,border:`1px solid rgba(79,195,247,.12)`}}>
                       <div style={{fontFamily:"'Cinzel',serif",fontSize:10,color:T.blue,letterSpacing:1,marginBottom:8}}>TODAY'S RIDE LOG</div>
                       {rides.map((r,i)=>(
                         <div key={r.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:i<rides.length-1?`1px solid rgba(79,195,247,.08)`:"none"}}>
-                          <span style={{fontSize:11,color:T.text,fontFamily:"'Lato',sans-serif"}}>{i+1}. {r.name}</span>
+                          <span style={{fontSize:14,color:T.text,fontFamily:"'Lato',sans-serif"}}>{i+1}. {r.name}</span>
                           <span style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{r.rating} · {r.wait||"?"}min wait</span>
                         </div>
                       ))}
@@ -756,33 +756,33 @@ Write in plain text with simple paragraph breaks — no markdown, no bullet poin
             <div style={{background:"rgba(105,240,174,.1)",border:`1px solid ${T.green}`,borderRadius:14,padding:40,textAlign:"center"}}>
               <div style={{fontSize:48,marginBottom:12}}>🎉</div>
               <div style={{fontFamily:"'Cinzel',serif",fontSize:18,color:T.green,marginBottom:8}}>RECAP SENT!</div>
-              <div style={{fontSize:13,color:T.text,fontFamily:"'Lato',sans-serif"}}>Your family is going to love reading about today's adventure!</div>
-              <button onClick={()=>{setSent(false);setActiveSection("log");}} style={{marginTop:16,padding:"9px 20px",background:"transparent",border:`1px solid ${T.green}`,borderRadius:8,color:T.green,fontFamily:"'Lato',sans-serif",fontSize:12,cursor:"pointer"}}>Plan Another Day</button>
+              <div style={{fontSize:16,color:T.text,fontFamily:"'Lato',sans-serif"}}>Your family is going to love reading about today's adventure!</div>
+              <button onClick={()=>{setSent(false);setActiveSection("log");}} style={{marginTop:16,padding:"9px 20px",background:"transparent",border:`1px solid ${T.green}`,borderRadius:8,color:T.green,fontFamily:"'Lato',sans-serif",fontSize:15,cursor:"pointer"}}>Plan Another Day</button>
             </div>
           ) : (
             <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:20}}>
-              <div style={{fontFamily:"'Cinzel',serif",fontSize:12,color:T.pink,letterSpacing:1,marginBottom:16}}>📤 SEND RECAP TO FAMILY</div>
+              <div style={{fontFamily:"'Cinzel',serif",fontSize:15,color:T.pink,letterSpacing:1,marginBottom:16}}>📤 SEND RECAP TO FAMILY</div>
               <div style={{marginBottom:12}}>
-                <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif"}}>Your Group Name</div>
+                <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif"}}>Your Group Name</div>
                 <input value={groupName} onChange={e=>setGroupName(e.target.value)}
-                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:13,padding:"9px 12px",fontFamily:"'Lato',sans-serif"}}/>
+                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:16,padding:"13px 16px",fontFamily:"'Lato',sans-serif"}}/>
               </div>
               <div style={{marginBottom:16}}>
-                <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif"}}>Family Email Addresses (comma-separated)</div>
+                <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif"}}>Family Email Addresses (comma-separated)</div>
                 <textarea value={familyEmails} onChange={e=>setFamilyEmails(e.target.value)} rows={3}
                   placeholder="grandma@gmail.com, uncle.bob@gmail.com, cousins@gmail.com"
-                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:12,padding:"9px 12px",fontFamily:"'Lato',sans-serif",resize:"none"}}/>
+                  style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:15,padding:"13px 16px",fontFamily:"'Lato',sans-serif",resize:"none"}}/>
               </div>
               {!preview && (
-                <div style={{padding:"10px 14px",background:"rgba(255,215,0,.06)",border:`1px solid rgba(255,215,0,.2)`,borderRadius:8,marginBottom:12,fontSize:11,color:T.gold,fontFamily:"'Lato',sans-serif"}}>
+                <div style={{padding:"10px 14px",background:"rgba(255,215,0,.06)",border:`1px solid rgba(255,215,0,.2)`,borderRadius:8,marginBottom:12,fontSize:14,color:T.gold,fontFamily:"'Lato',sans-serif"}}>
                   ⚠️ Generate a preview first before sending!
                 </div>
               )}
               <div style={{display:"flex",gap:8}}>
-                <button onClick={()=>{generatePreview();setActiveSection("preview");}} style={{flex:1,padding:"11px",background:"rgba(255,215,0,.08)",border:`1px solid ${T.gold}`,borderRadius:8,color:T.gold,fontFamily:"'Lato',sans-serif",fontSize:11,fontWeight:700,cursor:"pointer"}}>
+                <button onClick={()=>{generatePreview();setActiveSection("preview");}} style={{flex:1,padding:"11px",background:"rgba(255,215,0,.08)",border:`1px solid ${T.gold}`,borderRadius:8,color:T.gold,fontFamily:"'Lato',sans-serif",fontSize:14,fontWeight:700,cursor:"pointer"}}>
                   {preview?"↺ Regenerate Preview":"✉️ Generate Preview First"}
                 </button>
-                <button onClick={sendRecap} disabled={sending||!preview||!backendOnline} style={{flex:1,padding:"11px",background:sending?"rgba(105,240,174,.05)":`linear-gradient(135deg,rgba(255,107,157,.2),rgba(255,183,77,.2))`,border:`1px solid ${T.pink}`,borderRadius:8,color:T.pink,fontFamily:"'Cinzel',serif",fontSize:12,fontWeight:700,cursor:(sending||!preview||!backendOnline)?"not-allowed":"pointer",opacity:(sending||!preview||!backendOnline)?.5:1,letterSpacing:.5}}>
+                <button onClick={sendRecap} disabled={sending||!preview||!backendOnline} style={{flex:1,padding:"11px",background:sending?"rgba(105,240,174,.05)":`linear-gradient(135deg,rgba(255,107,157,.2),rgba(255,183,77,.2))`,border:`1px solid ${T.pink}`,borderRadius:8,color:T.pink,fontFamily:"'Cinzel',serif",fontSize:15,fontWeight:700,cursor:(sending||!preview||!backendOnline)?"not-allowed":"pointer",opacity:(sending||!preview||!backendOnline)?.5:1,letterSpacing:.5}}>
                   {sending?"SENDING…":"🚀 SEND TO FAMILY"}
                 </button>
               </div>
@@ -919,16 +919,16 @@ function WeatherTab() {
   if (loading) return (
     <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:60,gap:12}}>
       <div style={{fontSize:40}}>🌤️</div>
-      <div style={{color:T.dim,fontFamily:"'Cinzel',serif",fontSize:12,letterSpacing:2}}>FETCHING WEATHER…</div>
-      <div style={{fontSize:11,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Loading live data from Walt Disney World, Orlando FL</div>
+      <div style={{color:T.dim,fontFamily:"'Cinzel',serif",fontSize:15,letterSpacing:2}}>FETCHING WEATHER…</div>
+      <div style={{fontSize:14,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Loading live data from Walt Disney World, Orlando FL</div>
     </div>
   );
 
   if (error) return (
     <div style={{background:"rgba(255,107,157,.1)",border:`1px solid ${T.pink}`,borderRadius:14,padding:24,textAlign:"center"}}>
       <div style={{fontSize:32,marginBottom:8}}>⚠️</div>
-      <div style={{color:T.pink,fontFamily:"'Lato',sans-serif",fontSize:13,marginBottom:12}}>{error}</div>
-      <button onClick={fetchWeather} style={{padding:"8px 20px",background:"transparent",border:`1px solid ${T.pink}`,borderRadius:8,color:T.pink,fontFamily:"'Lato',sans-serif",fontSize:12,cursor:"pointer"}}>Try Again</button>
+      <div style={{color:T.pink,fontFamily:"'Lato',sans-serif",fontSize:16,marginBottom:12}}>{error}</div>
+      <button onClick={fetchWeather} style={{padding:"8px 20px",background:"transparent",border:`1px solid ${T.pink}`,borderRadius:8,color:T.pink,fontFamily:"'Lato',sans-serif",fontSize:15,cursor:"pointer"}}>Try Again</button>
     </div>
   );
 
@@ -962,7 +962,7 @@ function WeatherTab() {
         <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",flexWrap:"wrap",gap:16}}>
           {/* Left: main temp */}
           <div>
-            <div style={{fontSize:11,color:T.dim,fontFamily:"'Lato',sans-serif",letterSpacing:2,textTransform:"uppercase",marginBottom:4}}>
+            <div style={{fontSize:14,color:T.dim,fontFamily:"'Lato',sans-serif",letterSpacing:2,textTransform:"uppercase",marginBottom:4}}>
               Walt Disney World · Orlando, FL
             </div>
             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:4}}>
@@ -971,7 +971,7 @@ function WeatherTab() {
                 <div style={{fontFamily:"'Cinzel',serif",fontSize:56,fontWeight:900,color:T.text,lineHeight:1}}>
                   {weather.temp}°
                 </div>
-                <div style={{fontSize:13,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Feels like {weather.feelsLike}°F</div>
+                <div style={{fontSize:16,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Feels like {weather.feelsLike}°F</div>
               </div>
             </div>
             <div style={{fontSize:16,color:T.gold,fontFamily:"'Cinzel',serif",letterSpacing:1}}>{desc}</div>
@@ -982,11 +982,11 @@ function WeatherTab() {
             <div style={{display:"flex",gap:16}}>
               <div style={{textAlign:"center"}}>
                 <div style={{fontSize:18,color:T.pink,fontFamily:"'Cinzel',serif",fontWeight:700}}>{weather.high}°</div>
-                <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",textTransform:"uppercase",letterSpacing:1}}>High</div>
+                <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",textTransform:"uppercase",letterSpacing:1}}>High</div>
               </div>
               <div style={{textAlign:"center"}}>
                 <div style={{fontSize:18,color:T.blue,fontFamily:"'Cinzel',serif",fontWeight:700}}>{weather.low}°</div>
-                <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",textTransform:"uppercase",letterSpacing:1}}>Low</div>
+                <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",textTransform:"uppercase",letterSpacing:1}}>Low</div>
               </div>
             </div>
             {[
@@ -998,9 +998,9 @@ function WeatherTab() {
               {icon:"🌇", label:"Sunset",    value:fmtTime(weather.sunset)},
             ].map(({icon,label,value})=>(
               <div key={label} style={{display:"flex",alignItems:"center",gap:7}}>
-                <span style={{fontSize:13,width:18,textAlign:"center"}}>{icon}</span>
+                <span style={{fontSize:16,width:18,textAlign:"center"}}>{icon}</span>
                 <span style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif",width:70}}>{label}</span>
-                <span style={{fontSize:11,color:T.text,fontFamily:"'Lato',sans-serif",fontWeight:600}}>{value}</span>
+                <span style={{fontSize:14,color:T.text,fontFamily:"'Lato',sans-serif",fontWeight:600}}>{value}</span>
               </div>
             ))}
           </div>
@@ -1024,13 +1024,13 @@ function WeatherTab() {
         <div style={{fontFamily:"'Cinzel',serif",fontSize:10,color:isStormy?T.pink:isRainy?T.blue:T.green,letterSpacing:1.5,marginBottom:6,textTransform:"uppercase"}}>
           🏰 Park Weather Tip
         </div>
-        <div style={{fontSize:13,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.65}}>{tip}</div>
+        <div style={{fontSize:16,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.65}}>{tip}</div>
       </div>
 
       {/* Hourly forecast */}
       {weather.hourly.length > 0 && (
         <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden"}}>
-          <div style={{padding:"10px 16px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:11,color:T.blue,letterSpacing:1}}>
+          <div style={{padding:"10px 16px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:14,color:T.blue,letterSpacing:1}}>
             ⏰ HOURLY FORECAST — TODAY
           </div>
           <div style={{display:"flex",overflowX:"auto",padding:"14px 12px",gap:8}}>
@@ -1048,8 +1048,8 @@ function WeatherTab() {
                   <div style={{fontSize:10,color:i===0?T.gold:T.dim,fontFamily:"'Lato',sans-serif",fontWeight:i===0?700:400}}>{i===0?"Now":hrLabel}</div>
                   <div style={{fontSize:20}}>{hEmoji}</div>
                   <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.text,fontWeight:700}}>{h.temp}°</div>
-                  <div style={{fontSize:9,color:popColor,fontFamily:"'Lato',sans-serif"}}>{h.pop}% 🌧️</div>
-                  <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{h.wind}mph</div>
+                  <div style={{fontSize:15,color:popColor,fontFamily:"'Lato',sans-serif"}}>{h.pop}% 🌧️</div>
+                  <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{h.wind}mph</div>
                 </div>
               );
             })}
@@ -1097,8 +1097,8 @@ function WeatherTab() {
             <div style={{fontFamily:"'Cinzel',serif",fontSize:10,color:card.color,letterSpacing:1,marginBottom:8}}>{card.icon} {card.title.toUpperCase()}</div>
             {card.tips.map((t,i)=>(
               <div key={i} style={{display:"flex",gap:6,alignItems:"flex-start",marginBottom:5}}>
-                <span style={{color:card.color,flexShrink:0,fontSize:11,marginTop:1}}>→</span>
-                <span style={{fontSize:11,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.5}}>{t}</span>
+                <span style={{color:card.color,flexShrink:0,fontSize:14,marginTop:1}}>→</span>
+                <span style={{fontSize:14,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.5}}>{t}</span>
               </div>
             ))}
           </div>
@@ -1219,7 +1219,7 @@ function EntertainmentTab({ park }) {
               border:`1px solid ${active ? s.color : T.border}`,
               background: active ? s.bg : "transparent",
               color: active ? s.color : T.dim,
-              fontFamily:"'Lato',sans-serif", fontSize:11, fontWeight:700,
+              fontFamily:"'Lato',sans-serif", fontSize:14, fontWeight:700,
               textTransform:"capitalize",
             }}>
               {t === "all" ? "⭐ All" : `${TYPE_STYLE[t].icon} ${t.charAt(0).toUpperCase()+t.slice(1)}s`}
@@ -1255,9 +1255,9 @@ function EntertainmentTab({ park }) {
                   {ev.icon}
                 </div>
                 <div style={{flex:1,minWidth:0}}>
-                  <div style={{fontSize:13,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif",marginBottom:2}}>{ev.name}</div>
+                  <div style={{fontSize:16,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif",marginBottom:2}}>{ev.name}</div>
                   <div style={{display:"flex",gap:8,flexWrap:"wrap",alignItems:"center"}}>
-                    <span style={{fontSize:9,padding:"1px 7px",borderRadius:8,background:s.bg,color:s.color,fontFamily:"'Lato',sans-serif",fontWeight:700,textTransform:"uppercase"}}>{ev.type}</span>
+                    <span style={{fontSize:15,padding:"1px 7px",borderRadius:8,background:s.bg,color:s.color,fontFamily:"'Lato',sans-serif",fontWeight:700,textTransform:"uppercase"}}>{ev.type}</span>
                     <span style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>📍 {ev.area}</span>
                     <span style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>⏱ {ev.duration}</span>
                   </div>
@@ -1266,14 +1266,14 @@ function EntertainmentTab({ park }) {
                 <div style={{textAlign:"right",flexShrink:0}}>
                   {next && !isPast ? (
                     <>
-                      <div style={{fontSize:12,fontFamily:"'Cinzel',serif",color:s.color,fontWeight:700}}>{next.raw}</div>
+                      <div style={{fontSize:15,fontFamily:"'Cinzel',serif",color:s.color,fontWeight:700}}>{next.raw}</div>
                       {until && <div style={{fontSize:10,color:T.green,fontFamily:"'Lato',sans-serif"}}>in {until}</div>}
                     </>
                   ) : (
                     <div style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{isPast?"Ended today":"See times →"}</div>
                   )}
                 </div>
-                <div style={{color:T.dim,fontSize:12,marginLeft:4}}>{expanded===ev.id?"▲":"▼"}</div>
+                <div style={{color:T.dim,fontSize:15,marginLeft:4}}>{expanded===ev.id?"▲":"▼"}</div>
               </div>
 
               {/* Expanded detail */}
@@ -1281,7 +1281,7 @@ function EntertainmentTab({ park }) {
                 <div style={{padding:"0 16px 14px",borderTop:`1px solid ${T.border}20`,animation:"slideIn .2s ease"}}>
                   {/* All show times */}
                   <div style={{marginTop:10,marginBottom:10}}>
-                    <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,fontFamily:"'Lato',sans-serif",marginBottom:6}}>All Show Times Today</div>
+                    <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,fontFamily:"'Lato',sans-serif",marginBottom:6}}>All Show Times Today</div>
                     <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
                       {ev.times.map(t => {
                         const m = toMins(t);
@@ -1289,7 +1289,7 @@ function EntertainmentTab({ park }) {
                         const isNext = next && next.raw === t;
                         return (
                           <span key={t} style={{
-                            fontSize:11,padding:"4px 10px",borderRadius:20,fontFamily:"'Lato',sans-serif",fontWeight:700,
+                            fontSize:14,padding:"4px 10px",borderRadius:20,fontFamily:"'Lato',sans-serif",fontWeight:700,
                             background: isNext ? s.bg : "rgba(255,255,255,.04)",
                             color: isNext ? s.color : past ? T.dim : T.text,
                             border:`1px solid ${isNext ? s.color : T.border}`,
@@ -1303,7 +1303,7 @@ function EntertainmentTab({ park }) {
                   {/* Tip */}
                   <div style={{background:`${s.bg}`,border:`1px solid ${s.color}30`,borderRadius:9,padding:"10px 12px",display:"flex",gap:8}}>
                     <span style={{color:T.gold,flexShrink:0}}>💡</span>
-                    <span style={{fontSize:12,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>{ev.tip}</span>
+                    <span style={{fontSize:15,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>{ev.tip}</span>
                   </div>
                 </div>
               )}
@@ -1420,23 +1420,23 @@ Respond ONLY as JSON: {"likelihood":"Medium","reason":"brief reason","alternateT
 
       {/* Search bar */}
       <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:16}}>
-        <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.orange,letterSpacing:1,marginBottom:12}}>🍽️ DINING FINDER</div>
+        <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.orange,letterSpacing:1,marginBottom:12}}>🍽️ DINING FINDER</div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 100px 120px",gap:8}}>
           <div>
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Meal Time</div>
-            <select value={mealTime} onChange={e=>setMealTime(e.target.value)} style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:12,padding:"8px 10px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Meal Time</div>
+            <select value={mealTime} onChange={e=>setMealTime(e.target.value)} style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:15,padding:"12px 14px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
               {["8:00 AM","9:00 AM","10:00 AM","11:00 AM","11:30 AM","12:00 PM","12:30 PM","1:00 PM","1:30 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM","5:30 PM","6:00 PM","6:30 PM","7:00 PM","7:30 PM","8:00 PM","8:30 PM","9:00 PM"].map(t=><option key={t} value={t}>{t}</option>)}
             </select>
           </div>
           <div>
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Party Size</div>
-            <select value={partySize} onChange={e=>setPartySize(e.target.value)} style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:12,padding:"8px 10px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Party Size</div>
+            <select value={partySize} onChange={e=>setPartySize(e.target.value)} style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:15,padding:"12px 14px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
               {["1","2","3","4","5","6","7","8","9","10"].map(n=><option key={n} value={n}>{n} {n==="1"?"person":"people"}</option>)}
             </select>
           </div>
           <div>
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Type</div>
-            <select value={filter} onChange={e=>setFilter(e.target.value)} style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:12,padding:"8px 10px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:4,fontFamily:"'Lato',sans-serif"}}>Type</div>
+            <select value={filter} onChange={e=>setFilter(e.target.value)} style={{width:"100%",background:"#11112b",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:15,padding:"12px 14px",fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
               <option value="all">All types</option>
               {types.filter(t=>t!=="all").map(t=><option key={t} value={t}>{DINING_TYPE_STYLE[t]?.label}</option>)}
             </select>
@@ -1449,7 +1449,7 @@ Respond ONLY as JSON: {"likelihood":"Medium","reason":"brief reason","alternateT
         {types.map(t=>{
           const s = t==="all"?{color:T.gold,bg:"rgba(255,215,0,.1)"}:DINING_TYPE_STYLE[t];
           const active = filter===t;
-          return <button key={t} onClick={()=>setFilter(t)} style={{padding:"5px 13px",borderRadius:20,cursor:"pointer",border:`1px solid ${active?s.color:T.border}`,background:active?s.bg:"transparent",color:active?s.color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:11,fontWeight:700}}>
+          return <button key={t} onClick={()=>setFilter(t)} style={{padding:"5px 13px",borderRadius:20,cursor:"pointer",border:`1px solid ${active?s.color:T.border}`,background:active?s.bg:"transparent",color:active?s.color:T.dim,fontFamily:"'Lato',sans-serif",fontSize:14,fontWeight:700}}>
             {t==="all"?"🍴 All":`${DINING_TYPE_STYLE[t]?.icon} ${DINING_TYPE_STYLE[t]?.label}`}
           </button>;
         })}
@@ -1468,23 +1468,23 @@ Respond ONLY as JSON: {"likelihood":"Medium","reason":"brief reason","alternateT
               <div onClick={()=>setExpanded(isExpanded?null:dining.id)} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 16px",cursor:"pointer"}}>
                 <div style={{width:36,height:36,borderRadius:10,background:s.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>{s.icon}</div>
                 <div style={{flex:1,minWidth:0}}>
-                  <div style={{fontSize:13,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif",marginBottom:2}}>{dining.name}</div>
+                  <div style={{fontSize:16,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif",marginBottom:2}}>{dining.name}</div>
                   <div style={{display:"flex",gap:6,flexWrap:"wrap",alignItems:"center"}}>
-                    <span style={{fontSize:9,padding:"1px 6px",borderRadius:7,background:s.bg,color:s.color,fontFamily:"'Lato',sans-serif",fontWeight:700}}>{s.label}</span>
+                    <span style={{fontSize:15,padding:"1px 6px",borderRadius:7,background:s.bg,color:s.color,fontFamily:"'Lato',sans-serif",fontWeight:700}}>{s.label}</span>
                     <span style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>📍 {dining.area}</span>
                     <span style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif"}}>🍴 {dining.cuisine}</span>
                     <span style={{fontSize:10,color:T.gold,fontFamily:"'Lato',sans-serif"}}>{dining.priceRange}</span>
-                    {dining.characterDining && <span style={{fontSize:9,padding:"1px 6px",borderRadius:7,background:"rgba(179,136,255,.15)",color:T.purple,fontFamily:"'Lato',sans-serif",fontWeight:700}}>👸 Characters</span>}
-                    {dining.mobileOrder && <span style={{fontSize:9,padding:"1px 6px",borderRadius:7,background:"rgba(105,240,174,.12)",color:T.green,fontFamily:"'Lato',sans-serif",fontWeight:700}}>📱 Mobile Order</span>}
+                    {dining.characterDining && <span style={{fontSize:15,padding:"1px 6px",borderRadius:7,background:"rgba(179,136,255,.15)",color:T.purple,fontFamily:"'Lato',sans-serif",fontWeight:700}}>👸 Characters</span>}
+                    {dining.mobileOrder && <span style={{fontSize:15,padding:"1px 6px",borderRadius:7,background:"rgba(105,240,174,.12)",color:T.green,fontFamily:"'Lato',sans-serif",fontWeight:700}}>📱 Mobile Order</span>}
                   </div>
                 </div>
                 {avail && (
                   <div style={{textAlign:"right",flexShrink:0}}>
-                    <div style={{fontSize:11,fontWeight:700,color:likelihoodColor[avail.likelihood]||T.dim,fontFamily:"'Lato',sans-serif"}}>{avail.likelihood}</div>
-                    <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif"}}>avail.</div>
+                    <div style={{fontSize:14,fontWeight:700,color:likelihoodColor[avail.likelihood]||T.dim,fontFamily:"'Lato',sans-serif"}}>{avail.likelihood}</div>
+                    <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif"}}>avail.</div>
                   </div>
                 )}
-                <div style={{color:T.dim,fontSize:12,marginLeft:4}}>{isExpanded?"▲":"▼"}</div>
+                <div style={{color:T.dim,fontSize:15,marginLeft:4}}>{isExpanded?"▲":"▼"}</div>
               </div>
 
               {/* Expanded */}
@@ -1492,10 +1492,10 @@ Respond ONLY as JSON: {"likelihood":"Medium","reason":"brief reason","alternateT
                 <div style={{padding:"0 16px 16px",borderTop:`1px solid ${T.border}20`,animation:"slideIn .2s ease"}}>
                   {/* Popular items */}
                   <div style={{marginTop:12,marginBottom:12}}>
-                    <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,fontFamily:"'Lato',sans-serif",marginBottom:6}}>Must-Try Items</div>
+                    <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,fontFamily:"'Lato',sans-serif",marginBottom:6}}>Must-Try Items</div>
                     <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
                       {dining.popularItems.map((item,i)=>(
-                        <span key={i} style={{fontSize:11,padding:"3px 10px",borderRadius:20,background:s.bg,color:s.color,fontFamily:"'Lato',sans-serif",border:`1px solid ${s.color}30`}}>🌟 {item}</span>
+                        <span key={i} style={{fontSize:14,padding:"3px 10px",borderRadius:20,background:s.bg,color:s.color,fontFamily:"'Lato',sans-serif",border:`1px solid ${s.color}30`}}>🌟 {item}</span>
                       ))}
                     </div>
                   </div>
@@ -1503,32 +1503,32 @@ Respond ONLY as JSON: {"likelihood":"Medium","reason":"brief reason","alternateT
                   {/* Tip */}
                   <div style={{background:"rgba(255,215,0,.06)",border:"1px solid rgba(255,215,0,.15)",borderRadius:9,padding:"10px 12px",marginBottom:12,display:"flex",gap:8}}>
                     <span style={{color:T.gold,flexShrink:0}}>💡</span>
-                    <span style={{fontSize:12,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>{dining.tip}</span>
+                    <span style={{fontSize:15,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>{dining.tip}</span>
                   </div>
 
                   {/* Availability check */}
                   {dining.type==="table" || dining.type==="bar" ? (
                     <div>
-                      <button onClick={()=>checkAvailability(dining)} disabled={checkLoading===dining.id} style={{width:"100%",padding:"10px",background:`linear-gradient(135deg,${s.bg},rgba(79,195,247,.1))`,border:`1px solid ${s.color}`,borderRadius:8,color:s.color,fontFamily:"'Cinzel',serif",fontSize:11,fontWeight:700,cursor:checkLoading===dining.id?"not-allowed":"pointer",letterSpacing:.5,marginBottom:avail?10:0}}>
+                      <button onClick={()=>checkAvailability(dining)} disabled={checkLoading===dining.id} style={{width:"100%",padding:"10px",background:`linear-gradient(135deg,${s.bg},rgba(79,195,247,.1))`,border:`1px solid ${s.color}`,borderRadius:8,color:s.color,fontFamily:"'Cinzel',serif",fontSize:14,fontWeight:700,cursor:checkLoading===dining.id?"not-allowed":"pointer",letterSpacing:.5,marginBottom:avail?10:0}}>
                         {checkLoading===dining.id?"🤖 Checking with AI…":`🔍 CHECK SAME-DAY AVAILABILITY (${partySize} guests, ${mealTime})`}
                       </button>
                       {avail && (
                         <div style={{background:"rgba(255,255,255,.03)",border:`1px solid ${T.border}`,borderRadius:10,padding:14,animation:"slideIn .2s ease"}}>
                           <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-                            <span style={{fontSize:12,fontWeight:700,color:likelihoodColor[avail.likelihood]||T.dim,fontFamily:"'Lato',sans-serif"}}>Availability: {avail.likelihood}</span>
-                            <span style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Checked {avail.checked}</span>
+                            <span style={{fontSize:15,fontWeight:700,color:likelihoodColor[avail.likelihood]||T.dim,fontFamily:"'Lato',sans-serif"}}>Availability: {avail.likelihood}</span>
+                            <span style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Checked {avail.checked}</span>
                           </div>
-                          <div style={{fontSize:12,color:T.text,fontFamily:"'Lato',sans-serif",marginBottom:8,lineHeight:1.6}}>{avail.reason}</div>
+                          <div style={{fontSize:15,color:T.text,fontFamily:"'Lato',sans-serif",marginBottom:8,lineHeight:1.6}}>{avail.reason}</div>
                           {avail.alternateTimes?.length>0 && (
                             <div style={{marginBottom:8}}>
-                              <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,fontFamily:"'Lato',sans-serif",marginBottom:5}}>Try These Times Instead</div>
+                              <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,fontFamily:"'Lato',sans-serif",marginBottom:5}}>Try These Times Instead</div>
                               <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-                                {avail.alternateTimes.map(t=><span key={t} style={{fontSize:11,padding:"3px 9px",borderRadius:20,background:"rgba(79,195,247,.1)",color:T.blue,fontFamily:"'Lato',sans-serif",border:"1px solid rgba(79,195,247,.2)"}}>{t}</span>)}
+                                {avail.alternateTimes.map(t=><span key={t} style={{fontSize:14,padding:"3px 9px",borderRadius:20,background:"rgba(79,195,247,.1)",color:T.blue,fontFamily:"'Lato',sans-serif",border:"1px solid rgba(79,195,247,.2)"}}>{t}</span>)}
                               </div>
                             </div>
                           )}
-                          {avail.insiderTip && <div style={{fontSize:11,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6,marginBottom:6}}><span style={{color:T.purple}}>🎯 </span>{avail.insiderTip}</div>}
-                          {avail.walkUpWorth && <div style={{fontSize:11,color:T.green,fontFamily:"'Lato',sans-serif"}}>✓ Walk-up waitlist is worth trying today</div>}
+                          {avail.insiderTip && <div style={{fontSize:14,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6,marginBottom:6}}><span style={{color:T.purple}}>🎯 </span>{avail.insiderTip}</div>}
+                          {avail.walkUpWorth && <div style={{fontSize:14,color:T.green,fontFamily:"'Lato',sans-serif"}}>✓ Walk-up waitlist is worth trying today</div>}
                           <div style={{marginTop:10,padding:"8px 12px",background:"rgba(255,215,0,.06)",borderRadius:8,fontSize:10,color:T.gold,fontFamily:"'Lato',sans-serif"}}>
                             📱 Book via: My Disney Experience app → Dining → {dining.name}
                           </div>
@@ -1536,7 +1536,7 @@ Respond ONLY as JSON: {"likelihood":"Medium","reason":"brief reason","alternateT
                       )}
                     </div>
                   ) : (
-                    <div style={{padding:"8px 12px",background:"rgba(105,240,174,.06)",border:"1px solid rgba(105,240,174,.15)",borderRadius:8,fontSize:11,color:T.green,fontFamily:"'Lato',sans-serif",display:"flex",gap:8}}>
+                    <div style={{padding:"8px 12px",background:"rgba(105,240,174,.06)",border:"1px solid rgba(105,240,174,.15)",borderRadius:8,fontSize:14,color:T.green,fontFamily:"'Lato',sans-serif",display:"flex",gap:8}}>
                       <span>✓</span>
                       <span>{dining.mobileOrder?"Mobile Order available — open the My Disney Experience app to order ahead and skip the line.":"Walk up and order — no reservation needed. "+dining.type==="snack"?"Perfect for a quick treat!":"Quick service, no wait for seating."}</span>
                     </div>
@@ -1659,30 +1659,30 @@ function LocationTab({ park, backendOnline }) {
   if (!joined) return (
     <div style={{display:"flex",flexDirection:"column",gap:14,maxWidth:480,margin:"0 auto"}}>
       <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,padding:24}}>
-        <div style={{fontFamily:"'Cinzel',serif",fontSize:12,color:T.blue,letterSpacing:1,marginBottom:6,textAlign:"center"}}>📍 GROUP LOCATION SHARING</div>
-        <div style={{fontSize:12,color:T.dim,fontFamily:"'Lato',sans-serif",textAlign:"center",marginBottom:20,lineHeight:1.6}}>
+        <div style={{fontFamily:"'Cinzel',serif",fontSize:15,color:T.blue,letterSpacing:1,marginBottom:6,textAlign:"center"}}>📍 GROUP LOCATION SHARING</div>
+        <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",textAlign:"center",marginBottom:20,lineHeight:1.6}}>
           Share your location within the park with family. No GPS — just tap your current area and status so everyone knows where you are.
         </div>
         <div style={{marginBottom:12}}>
-          <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif"}}>Your Name</div>
+          <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif"}}>Your Name</div>
           <input value={myName} onChange={e=>setMyName(e.target.value)} placeholder="e.g. Dad, Mom, Emma…"
-            style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:13,padding:"9px 12px",fontFamily:"'Lato',sans-serif"}}/>
+            style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.text,fontSize:16,padding:"13px 16px",fontFamily:"'Lato',sans-serif"}}/>
         </div>
         <div style={{marginBottom:16}}>
-          <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif",display:"flex",justifyContent:"space-between"}}>
+          <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:5,fontFamily:"'Lato',sans-serif",display:"flex",justifyContent:"space-between"}}>
             <span>Group Code</span>
             <button onClick={generateCode} style={{background:"transparent",border:"none",color:T.blue,fontSize:10,cursor:"pointer",fontFamily:"'Lato',sans-serif",textDecoration:"underline"}}>Generate new code</button>
           </div>
           <input value={groupCode} onChange={e=>setGroupCode(e.target.value.toUpperCase())} placeholder="e.g. SMITH or MICKEY23"
-            style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:16,padding:"9px 12px",fontFamily:"'Cinzel',serif",letterSpacing:2,textTransform:"uppercase"}}/>
+            style={{width:"100%",background:"rgba(255,255,255,.04)",border:`1px solid ${T.border}`,borderRadius:8,color:T.gold,fontSize:16,padding:"13px 16px",fontFamily:"'Cinzel',serif",letterSpacing:2,textTransform:"uppercase"}}/>
           <div style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:4}}>Share this code with your family so they can join your group</div>
         </div>
         {!backendOnline && (
-          <div style={{padding:"9px 12px",background:"rgba(255,215,0,.06)",border:`1px solid rgba(255,215,0,.2)`,borderRadius:8,marginBottom:12,fontSize:11,color:T.gold,fontFamily:"'Lato',sans-serif"}}>
+          <div style={{padding:"13px 16px",background:"rgba(255,215,0,.06)",border:`1px solid rgba(255,215,0,.2)`,borderRadius:8,marginBottom:12,fontSize:14,color:T.gold,fontFamily:"'Lato',sans-serif"}}>
             ⚠️ Backend must be running for real-time sharing. You can still use this in demo mode.
           </div>
         )}
-        <button onClick={joinGroup} disabled={!myName.trim()||!groupCode.trim()} style={{width:"100%",padding:"12px",background:`linear-gradient(135deg,rgba(79,195,247,.2),rgba(105,240,174,.15))`,border:`1px solid ${T.blue}`,borderRadius:9,color:T.blue,fontFamily:"'Cinzel',serif",fontSize:13,fontWeight:700,cursor:"pointer",letterSpacing:1,opacity:(!myName.trim()||!groupCode.trim())?.4:1}}>
+        <button onClick={joinGroup} disabled={!myName.trim()||!groupCode.trim()} style={{width:"100%",padding:"12px",background:`linear-gradient(135deg,rgba(79,195,247,.2),rgba(105,240,174,.15))`,border:`1px solid ${T.blue}`,borderRadius:9,color:T.blue,fontFamily:"'Cinzel',serif",fontSize:16,fontWeight:700,cursor:"pointer",letterSpacing:1,opacity:(!myName.trim()||!groupCode.trim())?.4:1}}>
           📍 JOIN GROUP
         </button>
       </div>
@@ -1694,20 +1694,20 @@ function LocationTab({ park, backendOnline }) {
       {/* My status */}
       <div style={{background:T.card,border:`1px solid ${T.blue}`,borderRadius:14,padding:16}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-          <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.blue,letterSpacing:1}}>📍 MY LOCATION — {myName}</div>
+          <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.blue,letterSpacing:1}}>📍 MY LOCATION — {myName}</div>
           <div style={{display:"flex",gap:8,alignItems:"center"}}>
-            <span style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Group: <span style={{color:T.gold,fontWeight:700}}>{groupCode}</span></span>
+            <span style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Group: <span style={{color:T.gold,fontWeight:700}}>{groupCode}</span></span>
             <button onClick={leaveGroup} style={{background:"transparent",border:`1px solid ${T.border}`,color:T.dim,borderRadius:7,padding:"2px 8px",fontSize:10,cursor:"pointer",fontFamily:"'Lato',sans-serif"}}>Leave</button>
           </div>
         </div>
 
         {/* Area picker */}
         <div style={{marginBottom:10}}>
-          <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:6,fontFamily:"'Lato',sans-serif"}}>Where are you right now?</div>
+          <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:6,fontFamily:"'Lato',sans-serif"}}>Where are you right now?</div>
           <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
             {areas.map(a=>(
               <button key={a} onClick={()=>setMyArea(a)} style={{
-                padding:"5px 11px",borderRadius:20,cursor:"pointer",fontSize:11,fontFamily:"'Lato',sans-serif",
+                padding:"5px 11px",borderRadius:20,cursor:"pointer",fontSize:14,fontFamily:"'Lato',sans-serif",
                 border:`1px solid ${myArea===a?T.blue:T.border}`,
                 background:myArea===a?"rgba(79,195,247,.12)":"transparent",
                 color:myArea===a?T.blue:T.dim,fontWeight:myArea===a?700:400,
@@ -1718,11 +1718,11 @@ function LocationTab({ park, backendOnline }) {
 
         {/* Status picker */}
         <div style={{marginBottom:12}}>
-          <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:6,fontFamily:"'Lato',sans-serif"}}>What are you doing?</div>
+          <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:1.5,marginBottom:6,fontFamily:"'Lato',sans-serif"}}>What are you doing?</div>
           <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
             {STATUS_EMOJIS.map(s=>(
               <button key={s} onClick={()=>setMyStatus(s)} style={{
-                padding:"4px 10px",borderRadius:20,cursor:"pointer",fontSize:11,fontFamily:"'Lato',sans-serif",
+                padding:"4px 10px",borderRadius:20,cursor:"pointer",fontSize:14,fontFamily:"'Lato',sans-serif",
                 border:`1px solid ${myStatus===s?T.green:T.border}`,
                 background:myStatus===s?"rgba(105,240,174,.12)":"transparent",
                 color:myStatus===s?T.green:T.dim,
@@ -1731,7 +1731,7 @@ function LocationTab({ park, backendOnline }) {
           </div>
         </div>
 
-        <button onClick={pushLocation} style={{width:"100%",padding:"10px",background:"rgba(79,195,247,.1)",border:`1px solid ${T.blue}`,borderRadius:8,color:T.blue,fontFamily:"'Cinzel',serif",fontSize:11,fontWeight:700,cursor:"pointer",letterSpacing:.5}}>
+        <button onClick={pushLocation} style={{width:"100%",padding:"10px",background:"rgba(79,195,247,.1)",border:`1px solid ${T.blue}`,borderRadius:8,color:T.blue,fontFamily:"'Cinzel',serif",fontSize:14,fontWeight:700,cursor:"pointer",letterSpacing:.5}}>
           📡 SHARE MY LOCATION NOW
         </button>
       </div>
@@ -1739,9 +1739,9 @@ function LocationTab({ park, backendOnline }) {
       {/* Group members */}
       <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden"}}>
         <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-          <span style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.green,letterSpacing:1}}>👨‍👩‍👧 GROUP MEMBERS</span>
+          <span style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.green,letterSpacing:1}}>👨‍👩‍👧 GROUP MEMBERS</span>
           <div style={{display:"flex",gap:8,alignItems:"center"}}>
-            {lastSync && <span style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Synced {lastSync.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</span>}
+            {lastSync && <span style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif"}}>Synced {lastSync.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</span>}
             <button onClick={pullLocations} style={{background:"transparent",border:`1px solid ${T.border}`,color:T.dim,borderRadius:6,padding:"2px 7px",fontSize:10,cursor:"pointer",fontFamily:"'Lato',sans-serif"}}>↺</button>
           </div>
         </div>
@@ -1757,9 +1757,9 @@ function LocationTab({ park, backendOnline }) {
               {AREA_EMOJI[m.area]||"📍"}
             </div>
             <div style={{flex:1,minWidth:0}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif"}}>{m.name}</div>
-              <div style={{fontSize:11,color:T.green,fontFamily:"'Lato',sans-serif",marginTop:1}}>{m.area}</div>
-              {m.status && <div style={{fontSize:11,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1}}>{m.status}</div>}
+              <div style={{fontSize:16,fontWeight:700,color:T.text,fontFamily:"'Lato',sans-serif"}}>{m.name}</div>
+              <div style={{fontSize:14,color:T.green,fontFamily:"'Lato',sans-serif",marginTop:1}}>{m.area}</div>
+              {m.status && <div style={{fontSize:14,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1}}>{m.status}</div>}
             </div>
             <div style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif",flexShrink:0,textAlign:"right"}}>
               {timeSince(m.ts)}
@@ -1772,7 +1772,7 @@ function LocationTab({ park, backendOnline }) {
       {/* Meet-up suggestor */}
       <div style={{background:"rgba(105,240,174,.06)",border:`1px solid rgba(105,240,174,.2)`,borderRadius:12,padding:"12px 16px"}}>
         <div style={{fontFamily:"'Cinzel',serif",fontSize:10,color:T.green,letterSpacing:1,marginBottom:6}}>💡 MEET-UP TIP</div>
-        <div style={{fontSize:12,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>
+        <div style={{fontSize:15,color:T.text,fontFamily:"'Lato',sans-serif",lineHeight:1.6}}>
           Can't find each other? Pick a <strong style={{color:T.gold}}>landmark meet-up spot</strong> before splitting up — near Cinderella Castle flagpole, the EPCOT Spaceship Earth base, or the Tree of Life bridge. Works even without cell service.
         </div>
       </div>
@@ -1882,25 +1882,25 @@ export default function DisneyAgent() {
 
         {/* Config bar */}
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:8,marginBottom:12}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:10,padding:"9px 12px"}}>
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:2,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>Park</div>
-            <select value={park} onChange={e=>setPark(e.target.value)} style={{width:"100%",background:"transparent",border:"none",color:T.gold,fontSize:11,fontFamily:"'Lato',sans-serif",cursor:"pointer",fontWeight:700}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:10,padding:"13px 16px"}}>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:2,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>Park</div>
+            <select value={park} onChange={e=>setPark(e.target.value)} style={{width:"100%",background:"transparent",border:"none",color:T.gold,fontSize:14,fontFamily:"'Lato',sans-serif",cursor:"pointer",fontWeight:700}}>
               {PARKS.map(p=><option key={p} value={p}>{p}</option>)}
             </select>
           </div>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:10,padding:"9px 12px"}}>
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:2,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>Visit Day</div>
-            <select value={visitDay} onChange={e=>setVisitDay(e.target.value)} style={{width:"100%",background:"transparent",border:"none",color:T.gold,fontSize:12,fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:10,padding:"13px 16px"}}>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:2,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>Visit Day</div>
+            <select value={visitDay} onChange={e=>setVisitDay(e.target.value)} style={{width:"100%",background:"transparent",border:"none",color:T.gold,fontSize:15,fontFamily:"'Lato',sans-serif",cursor:"pointer"}}>
               {DAYS.map(d=><option key={d} value={d}>{d}</option>)}
             </select>
           </div>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:10,padding:"9px 12px",display:"flex",flexDirection:"column",justifyContent:"center"}}>
-            <div style={{fontSize:9,color:T.dim,textTransform:"uppercase",letterSpacing:2,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>Live Data</div>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:10,padding:"13px 16px",display:"flex",flexDirection:"column",justifyContent:"center"}}>
+            <div style={{fontSize:15,color:T.dim,textTransform:"uppercase",letterSpacing:2,marginBottom:3,fontFamily:"'Lato',sans-serif"}}>Live Data</div>
             <div style={{fontSize:10,color:lastUpdate?T.green:T.dim,fontFamily:"'Lato',sans-serif"}}>
               {lastUpdate?`Updated ${lastUpdate.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}`:"Loading…"}
             </div>
           </div>
-          <button onClick={loadRides} disabled={loading} style={{background:"rgba(79,195,247,.08)",border:`1px solid ${T.blue}`,borderRadius:10,color:T.blue,fontSize:11,fontFamily:"'Lato',sans-serif",fontWeight:700,cursor:"pointer",padding:"9px 12px"}}>
+          <button onClick={loadRides} disabled={loading} style={{background:"rgba(79,195,247,.08)",border:`1px solid ${T.blue}`,borderRadius:10,color:T.blue,fontSize:14,fontFamily:"'Lato',sans-serif",fontWeight:700,cursor:"pointer",padding:"13px 16px"}}>
             ↺ Refresh Waits
           </button>
         </div>
@@ -1908,7 +1908,7 @@ export default function DisneyAgent() {
         {/* Tab bar */}
         <div style={{display:"flex",gap:6,marginBottom:14,overflowX:"auto",paddingBottom:2}}>
           {TABS.map(tab=>(
-            <button key={tab.id} onClick={()=>setActiveTab(tab.id)} style={{padding:"8px 16px",borderRadius:20,border:`1px solid ${activeTab===tab.id?T.gold:T.border}`,background:activeTab===tab.id?"rgba(255,215,0,.12)":"transparent",color:activeTab===tab.id?T.gold:T.dim,fontFamily:"'Lato',sans-serif",fontSize:12,fontWeight:700,cursor:"pointer",whiteSpace:"nowrap",transition:"all .2s",flexShrink:0}}>
+            <button key={tab.id} onClick={()=>setActiveTab(tab.id)} style={{padding:"12px 20px",borderRadius:24,border:`1px solid ${activeTab===tab.id?T.gold:T.border}`,background:activeTab===tab.id?"rgba(255,215,0,.12)":"transparent",color:activeTab===tab.id?T.gold:T.dim,fontFamily:"'Lato',sans-serif",fontSize:15,fontWeight:700,cursor:"pointer",whiteSpace:"nowrap",transition:"all .2s",flexShrink:0}}>
               {tab.label}
             </button>
           ))}
@@ -1918,13 +1918,13 @@ export default function DisneyAgent() {
         {activeTab==="live" && (
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
             <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden"}}>
-              <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:11,color:T.gold,letterSpacing:1}}>LIVE WAIT TIMES — {park}</div>
+              <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`,fontFamily:"'Cinzel',serif",fontSize:14,color:T.gold,letterSpacing:1}}>LIVE WAIT TIMES — {park}</div>
               <div style={{maxHeight:420,overflowY:"auto"}}>
                 {rides.map(r=>(
-                  <div key={r.id} className="row-hover" style={{display:"flex",alignItems:"center",padding:"9px 14px",borderBottom:`1px solid ${T.border}20`}}>
+                  <div key={r.id} className="row-hover" style={{display:"flex",alignItems:"center",padding:"13px 16px",borderBottom:`1px solid ${T.border}20`}}>
                     <div style={{flex:1,minWidth:0}}>
-                      <div style={{fontSize:12,fontFamily:"'Lato',sans-serif",fontWeight:700,color:T.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div>
-                      <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{r.area}</div>
+                      <div style={{fontSize:15,fontFamily:"'Lato',sans-serif",fontWeight:700,color:T.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div>
+                      <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif"}}>{r.area}</div>
                     </div>
                     <div style={{textAlign:"right",marginLeft:8}}>
                       <div style={{fontSize:16,fontFamily:"'Cinzel',serif",fontWeight:700,color:T[r.status]}}>{r.currentWait}</div>
@@ -1937,18 +1937,18 @@ export default function DisneyAgent() {
             </div>
             <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden"}}>
               <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`}}>
-                <div style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.green,letterSpacing:1}}>OPTIMAL RIDE ORDER</div>
-                <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1}}>Shortest → longest wait right now</div>
+                <div style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.green,letterSpacing:1}}>OPTIMAL RIDE ORDER</div>
+                <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1}}>Shortest → longest wait right now</div>
               </div>
               <div style={{maxHeight:420,overflowY:"auto"}}>
                 {sortedByWait.map((r,i)=>(
-                  <div key={r.id} className="row-hover" style={{display:"flex",alignItems:"flex-start",padding:"9px 14px",borderBottom:`1px solid ${T.border}20`}}>
-                    <div style={{width:20,height:20,borderRadius:"50%",flexShrink:0,background:i<3?T.green:i<6?T.gold:T.pink,color:"#000",fontSize:9,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",marginRight:9,marginTop:1,fontFamily:"'Lato',sans-serif"}}>{i+1}</div>
+                  <div key={r.id} className="row-hover" style={{display:"flex",alignItems:"flex-start",padding:"13px 16px",borderBottom:`1px solid ${T.border}20`}}>
+                    <div style={{width:20,height:20,borderRadius:"50%",flexShrink:0,background:i<3?T.green:i<6?T.gold:T.pink,color:"#000",fontSize:15,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",marginRight:9,marginTop:1,fontFamily:"'Lato',sans-serif"}}>{i+1}</div>
                     <div style={{flex:1,minWidth:0}}>
-                      <div style={{fontSize:12,fontFamily:"'Lato',sans-serif",fontWeight:700,color:T.text}}>{r.name}</div>
-                      <div style={{fontSize:9,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1,lineHeight:1.4}}>{r.tips}</div>
+                      <div style={{fontSize:15,fontFamily:"'Lato',sans-serif",fontWeight:700,color:T.text}}>{r.name}</div>
+                      <div style={{fontSize:15,color:T.dim,fontFamily:"'Lato',sans-serif",marginTop:1,lineHeight:1.4}}>{r.tips}</div>
                     </div>
-                    <div style={{fontSize:12,fontFamily:"'Cinzel',serif",fontWeight:700,color:T[r.status],marginLeft:6,flexShrink:0}}>{r.currentWait}m</div>
+                    <div style={{fontSize:15,fontFamily:"'Cinzel',serif",fontWeight:700,color:T[r.status],marginLeft:6,flexShrink:0}}>{r.currentWait}m</div>
                   </div>
                 ))}
               </div>
@@ -1987,29 +1987,29 @@ export default function DisneyAgent() {
         {activeTab==="chat" && (
           <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:14,display:"flex",flexDirection:"column",height:520}}>
             <div style={{padding:"10px 14px",borderBottom:`1px solid ${T.border}`}}>
-              <span style={{fontFamily:"'Cinzel',serif",fontSize:11,color:T.blue,letterSpacing:1}}>AI AGENT CHAT</span>
+              <span style={{fontFamily:"'Cinzel',serif",fontSize:14,color:T.blue,letterSpacing:1}}>AI AGENT CHAT</span>
               <span style={{fontSize:10,color:T.dim,fontFamily:"'Lato',sans-serif",marginLeft:8}}>Ask anything about {park}</span>
             </div>
             <div style={{flex:1,overflowY:"auto",padding:"10px 14px",display:"flex",flexDirection:"column",gap:8}}>
               {chatMessages.length===0&&(
-                <div style={{color:T.dim,fontSize:12,fontFamily:"'Lato',sans-serif",textAlign:"center",marginTop:24}}>
-                  🏰 Ask me anything!<br/><span style={{fontSize:11,opacity:.7}}>Best time for Haunted Mansion? Where to eat? Hidden gems?</span>
+                <div style={{color:T.dim,fontSize:15,fontFamily:"'Lato',sans-serif",textAlign:"center",marginTop:24}}>
+                  🏰 Ask me anything!<br/><span style={{fontSize:14,opacity:.7}}>Best time for Haunted Mansion? Where to eat? Hidden gems?</span>
                 </div>
               )}
               {chatMessages.map((msg,i)=>(
                 <div key={i} style={{animation:"slideIn .25s ease",display:"flex",flexDirection:"column",alignItems:msg.role==="user"?"flex-end":"flex-start"}}>
-                  <div style={{maxWidth:"86%",padding:"9px 13px",borderRadius:msg.role==="user"?"14px 14px 3px 14px":"14px 14px 14px 3px",background:msg.role==="user"?"rgba(255,215,0,.1)":"rgba(79,195,247,.07)",border:`1px solid ${msg.role==="user"?"rgba(255,215,0,.18)":"rgba(79,195,247,.12)"}`,fontSize:12,fontFamily:"'Lato',sans-serif",lineHeight:1.65,whiteSpace:"pre-wrap",color:T.text}}>{msg.content}</div>
-                  <div style={{fontSize:9,color:T.dim,marginTop:2,fontFamily:"'Lato',sans-serif"}}>{msg.time}</div>
+                  <div style={{maxWidth:"86%",padding:"9px 13px",borderRadius:msg.role==="user"?"14px 14px 3px 14px":"14px 14px 14px 3px",background:msg.role==="user"?"rgba(255,215,0,.1)":"rgba(79,195,247,.07)",border:`1px solid ${msg.role==="user"?"rgba(255,215,0,.18)":"rgba(79,195,247,.12)"}`,fontSize:15,fontFamily:"'Lato',sans-serif",lineHeight:1.65,whiteSpace:"pre-wrap",color:T.text}}>{msg.content}</div>
+                  <div style={{fontSize:15,color:T.dim,marginTop:2,fontFamily:"'Lato',sans-serif"}}>{msg.time}</div>
                 </div>
               ))}
-              {chatLoading&&<div style={{color:T.blue,fontSize:12,fontFamily:"'Lato',sans-serif"}}>🤔 Thinking…</div>}
+              {chatLoading&&<div style={{color:T.blue,fontSize:15,fontFamily:"'Lato',sans-serif"}}>🤔 Thinking…</div>}
               <div ref={messagesEndRef}/>
             </div>
             <div style={{padding:"10px 14px",borderTop:`1px solid ${T.border}`,display:"flex",gap:8}}>
               <textarea value={chatInput} onChange={e=>setChatInput(e.target.value)}
                 onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendChat()}}}
                 placeholder="Ask about rides, food, tips, crowds…" rows={2}
-                style={{flex:1,background:"rgba(255,255,255,.03)",border:`1px solid ${T.border}`,borderRadius:9,color:T.text,fontSize:12,padding:"7px 11px",fontFamily:"'Lato',sans-serif",resize:"none",lineHeight:1.4}}/>
+                style={{flex:1,background:"rgba(255,255,255,.03)",border:`1px solid ${T.border}`,borderRadius:9,color:T.text,fontSize:15,padding:"7px 11px",fontFamily:"'Lato',sans-serif",resize:"none",lineHeight:1.4}}/>
               <button onClick={sendChat} disabled={chatLoading} style={{background:T.gold,color:"#000",border:"none",borderRadius:9,width:40,cursor:chatLoading?"not-allowed":"pointer",fontSize:16,fontWeight:900,opacity:chatLoading?.5:1}}>→</button>
             </div>
           </div>
