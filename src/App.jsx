@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const API_BASE = "http://3.145.104.10:3001";
+const API_BASE = "https://disneyagent.duckdns.org";
 const PARKS = ["Magic Kingdom", "EPCOT", "Hollywood Studios", "Animal Kingdom"];
 const DAYS   = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 
