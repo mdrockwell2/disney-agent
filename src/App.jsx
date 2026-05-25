@@ -59,21 +59,13 @@ function localWaitTimes(park) {
 
 // ─── CLAUDE CALL ──────────────────────────────────────────────────────────────
 async function callClaude(prompt, backendOnline, park, visitDay, rides=[]) {
-  if (backendOnline) {
-    const r = await fetch(`${API_BASE}/api/chat`, {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ messages:[{role:"user",content:prompt}], park, visitDay, currentRides:rides })
-    });
-    const d = await r.json();
-    return d.reply;
-  } else {
-    const r = await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1500, messages:[{role:"user",content:prompt}] })
-    });
-    const d = await r.json();
-    return d.content?.[0]?.text || "";
-  }
+  const r = await fetch(`${API_BASE}/api/chat`, {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ messages:[{role:"user",content:prompt}], park, visitDay, currentRides:rides })
+  });
+  const d = await r.json();
+  if (d.error) throw new Error(d.error);
+  return d.reply;
 }
 
 // ─── PLAN MY DAY ─────────────────────────────────────────────────────────────
